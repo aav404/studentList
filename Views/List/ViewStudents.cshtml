@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<TestWebApp.Models.Student>
+@{
+    ViewData["Title"] = "StudentList";
+
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Список студентов</title>
+    <style>
+        table, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h3>Студенты</h3>
+    <table>
+
+        <tr>
+            <th>Фамилия</th>
+            <th>Номер телефона</th>
+            <th>Дата рождения</th>
+        </tr>
+        @foreach (var student in Model)
+        {
+    <tr>
+        <td>@student.Surname</td>
+        <td>@student.PhoneNumber</td>
+        <td>@student.Birthday.ToString("dd.MM.yyyy")</td>
+        <td><a href="~/List/EditStudent/@student.Id">Редактировать</a></td>
+        <td><a href="~/List/DeleteStudent/@student.Id">Удалить</a></td>
+
+    </tr>
+        }
+    </table>
+    <a href="~/List/AddStudent">Добавить новую запись</a>
+</body>
+</html>
